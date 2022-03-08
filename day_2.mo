@@ -6,7 +6,7 @@ import Text "mo:base/Text";
 import Iter "mo:base/Iter";
 import Int "mo:base/Int";
 import Char "mo:base/Char";
-import Prim "mo:prim"
+import Prim "mo:prim";
 
 actor { 
 
