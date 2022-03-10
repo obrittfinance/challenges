@@ -8,7 +8,7 @@ actor {
     //Challenge 1 : Write a function add that takes two natural numbers n and m and returns the sum.
 
     public func add(n : Nat, m : Nat) : async Nat{
-            return(n + m);
+        return (n + m);
     };
 
     //Challenge 2 : Write a function square that takes a natural number n and returns the area of a square of length n.
@@ -20,13 +20,12 @@ actor {
     //Challenge 3 : Challenge 3 : Write a function days_to_second that takes a number of days n and returns the number of seconds.
 
     public func days_to_second(n : Nat) : async Nat{
-        return(n * 24 * 60 * 60)
+        return(n * 86400)
     };
 
     //challenge 4 Challenge 4 : Write two functions increment_counter & clear_counter .
 
-    
-    var counter : Nat = 0;
+        var counter : Nat = 0;
     
     public func increment_amount (n : Nat): async Nat{
         counter := counter + n;
@@ -37,6 +36,7 @@ actor {
         counter:= 0;
         return(counter);
     };
+ 
 
     //challenge 5
 
@@ -83,7 +83,7 @@ actor {
 
 
 
-    //Challenge 7
+    //Challenge 7 Write a function sum_of_array that takes an array of natural numbers and returns the sum. This function will returns 0 if the array is empty.
 
     let example_array : [Nat] = [1,2,7,];
     public func sum_of_array(array : [Nat]) : async Nat {

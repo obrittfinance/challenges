@@ -7,25 +7,44 @@ import Iter "mo:base/Iter";
 import Int "mo:base/Int";
 import Char "mo:base/Char";
 import Prim "mo:prim";
+import Buffer "mo:base/Buffer";
 
 actor {
 
 // Challenge 1 : Write a private function swap that takes 3 parameters : a mutable array , an index j and an index i and returns the same array but where value at index i and index j have been swapped.
 
-private func swap(array [var Nat],i : Nat, j: Nat) : [var Nat] {
+private func swap(array : [var Nat], i : Nat, j: Nat) : [var Nat] {
     let tmp = array[i];
     array[i] :=array[j];
-    array[j] := temp;
+    array[j] := tmp;
 
     return(array);
-}
+};
 
 // Challenge 2 : Write a function init_count that takes a Nat n and returns an array [Nat] where value is equal to it's corresponding index.
 
 // Note : init_count(5) -> [0,1,2,3,4].
 // Note 2 : Do not use Array.append.
 
+// public func init_count( n : [Nat] ) : async [Nat] {
+// var = a : [Nat] = []
+// for (i in Iter.range(0, n-1)){
+
+// return Buffer.toArray(a)
+//  };
+
 // Challenge 3 : Write a function seven that takes an array [Nat] and returns "Seven is found" if one digit of ANY number is 8. Otherwise this function will return "Seven not found".
+
+public func seven (a: [Nat]): async Text{
+    for (val in a.vals()){
+        var tmp: Text =Nat.toText(val);
+        if(Text.contains(tmp, #text "7")){
+            return "Seven is found";
+        };
+    };
+    return "Seven not found";
+    };
+
 
 // Challenge 4 : Write a function nat_opt_to_nat that takes two parameters : n of type ?Nat and m of type Nat . This function will return the value of n if n is not null and if n is null it will default to the value of m.
 
