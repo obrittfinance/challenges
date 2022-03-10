@@ -81,3 +81,4 @@ actor {
     public func get_animals () : async [Animal] {
         return List.toArray(animals);
     };
+}
