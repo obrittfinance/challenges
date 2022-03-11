@@ -8,18 +8,71 @@ import Int "mo:base/Int";
 import Char "mo:base/Char";
 import Prim "mo:prim";
 import Buffer "mo:base/Buffer";
+import Principal "mo:base/Principal";
+import HashMap "mo:base/HashMap";
 
 actor {
 
 // Challenge 1 : Write a function is_anonymous that takes no arguments but returns true if the caller is anonymous and false otherwise.
 
-// Challenge 2 : Create an HashMap called favoriteNumber where the keys are Principal and the value are Nat.
+public func is_anonymous() : async Bool {
+let anonymous_principal : Principal = Principal.fromText("2vxsx-fae");
+    if (whoami == anonymous_principal){
+        return true;
+    } else {
+        return false;
+    };
+};
 
-// Challenge 3 : Write two functions :
 
-// add_favorite_number that takes n of type Nat and stores this value in the HashMap where the key is the principal of the caller. This function has no return value.
-// show_favorite_number that takes no argument and returns n of type ?Nat, n is the favorite number of the person as defined in the previous function or null if the person hasn't registered.
+public shared({caller}) func whoami() : async Principal {
+    return(caller);
+};
+
+    
+
+
+
+ //Challenge 2 : Create an HashMap called favoriteNumber where the keys are Principal and the value are Nat.
+
+    let anonymous_principal : Principal = Principal.fromText("2vxsx-fae");
+     let favoriteNumber = HashMap.HashMap<Principal, Nat>(0, Principal.equal, Principal.hash);
+     favoriteNumber.put(anonymous_principal, 1);
+
+    public func test() : async ?Nat {
+         return(favoriteNumber.get(Principal.fromText("2vxsx-fae")));
+     };
+
+
+
+// // Challenge 3 : Write two functions :
+
+// // add_favorite_number that takes n of type Nat and stores this value in the HashMap where the key is the principal of the caller. This function has no return value.
+
+ public func add_favorite_number (n : Nat) : () {
+     favoriteNumber.put(anonymous_principal, n);
+ };
+
+// // show_favorite_number that takes no argument and returns n of type ?Nat, n is the favorite number of the person as defined in the previous function or null if the person hasn't registered.
+
+
+ public func show_favorite_number () : async ?Nat {
+     return (favoriteNumber.get(anonymous_principal));
+ };
+
+
 // Challenge 4 : Rewrite your function add_favorite_number so that if the caller has already registered his favorite number, the value in memory isn't modified. This function will return a text of type Text that indicates "You've already registered your number" in that case and "You've successfully registered your number" in the other scenario.
+
+public func add_favorite_number1(n : Nat) : async ?Text {
+    var tmp: ?Nat = favoriteNumber.get(anonymous_principal);
+    if (tmp == n) {
+        return ?"You've already registered";
+    } else {
+        favoriteNumber.put(anonymous_principal, n);
+        return ?"You've successfully registered your number";
+    };
+};
+}
 
 // Challenge 5 : Write two functions
 
@@ -43,4 +96,3 @@ actor {
 // Note : Only practice challenge 10 if you wish to, this is optional and it will not be taken into account for any ranking.
 
 
-}
